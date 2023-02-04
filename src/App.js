@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 import { getAllPokemon } from './utils/pokemon';
+import { getPokemon }    from './utils/pokemon';
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
@@ -11,12 +12,23 @@ function App() {
     const fetchPokemonData = async () => {
       // 全てのポケモンデータを取得
       let res = await getAllPokemon(initialURL);
-      console.log(res)
+      // 各ポケモンの詳細なデータを取得
+      loadPokemon(res.results);
+      console.log(res.results)
       setLoading(false);
     };
     fetchPokemonData();
   }, [])
 
+  const loadPokemon = (data) => {
+    // _pokemonDataの中にポケモン1つ1つのデータを格納する
+    let _pokemonData = Promise.all(
+      data.map((pokemon) => {
+        let pokemonRecord = getPokemon(pokemon.url);
+        return pokemonRecord;
+      })
+    );
+  };
 
   return <div className="App">
     {loading ? (
