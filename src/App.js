@@ -7,7 +7,7 @@ import { getPokemon }    from './utils/pokemon';
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
 
-  const [loading, setLoading]        = useState(true);
+  const [loading, setLoading]         = useState(true);
   const [pokemonData, setPokemonData] = useState();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function App() {
     );
     setPokemonData(_pokemonData);
   };
-
+  console.log(pokemonData)
 
   return <div className="App">
     {loading ? (
