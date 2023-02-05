@@ -1,9 +1,10 @@
 // rafce
-import React from 'react'
+import React from 'react';
+import "./Card.css";
 
 const Card = ({ pokemon }) => {
   return (
-    <div className="ard">
+    <div className="card">
       <div className="cardI">
         <img src={pokemon.sprites.front_default} alt="" />
       </div>
